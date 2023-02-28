@@ -25,5 +25,5 @@ Node >> nextLink [
 
 { #category : #accessing }
 Node >> nextLink: newLink [
-    nextLink := newLink
+    nextLink := newLink.
 ]
