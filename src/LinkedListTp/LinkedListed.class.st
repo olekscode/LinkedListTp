@@ -14,7 +14,7 @@ LinkedListed >> addLast: anObjectOrLink [
 
 	| link |
 	link:= anObjectOrLink .
-	size=0 ifFalse: [ tail nextLink: link ] 
+	size = 0 ifFalse: [ tail nextLink:link ] 
 			 ifTrue: [ headList := link ].
 	tail := link .
    size := size + 1.
@@ -37,7 +37,7 @@ LinkedListed >> asArray [
 LinkedListed >> at:anInteger [
 
 	| link_tmp |
-	link_tmp := self first .
+	link_tmp := self first.
 	(anInteger - 1) timesRepeat: [ link_tmp := link_tmp nextLink ].
 	^ link_tmp
 ]
@@ -52,10 +52,18 @@ LinkedListed >> at: anInteger put: anObject [
 ]
 
 { #category : #enumerating }
-LinkedListed >> do: block [
-	"Execute block for each of my elements."
+LinkedListed >> collect: block [
+	| result |
+	result := self class new.
+	self do: [ :each |
+		result addLast: (block value: each) ].
+	^ result
+	
+]
 
-	self linksDo: [ :each | block data: each data ].
+{ #category : #enumerating }
+LinkedListed >> do: block [
+	self linksDo: [ :each | block nextLink: each data ].
 ]
 
 { #category : #accessing }
@@ -82,9 +90,9 @@ LinkedListed >> isEmpty [
 { #category : #enumerating }
 LinkedListed >> linksDo: block [ 
 	|current|
-	current:=headList .
+	current := headList .
 	[ current isNil ] whileFalse: [ 
-		block data: current.
+		block data: current .
 		current := current nextLink
 	 ]
 ]
