@@ -55,15 +55,19 @@ LinkedListed >> at: anInteger put: anObject [
 LinkedListed >> collect: block [
 	| result |
 	result := self class new.
-	self do: [ :each |
-		result addLast: (block value: each) ].
+	self do: [ :each |	result addLast: (block value: each) ].
 	^ result
 	
 ]
 
 { #category : #enumerating }
+LinkedListed >> detect:block [
+
+]
+
+{ #category : #enumerating }
 LinkedListed >> do: block [
-	self linksDo: [ :each | block nextLink: each data ].
+	self linksDo: [ :each | block nextLink: each nextLink ].
 ]
 
 { #category : #accessing }
@@ -95,6 +99,15 @@ LinkedListed >> linksDo: block [
 		block data: current .
 		current := current nextLink
 	 ]
+]
+
+{ #category : #enumerating }
+LinkedListed >> reject: block [
+]
+
+{ #category : #enumerating }
+LinkedListed >> select: block [
+
 ]
 
 { #category : #'as yet unclassified' }
