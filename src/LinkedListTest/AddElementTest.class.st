@@ -93,11 +93,11 @@ AddElementTest >> testFirst [
 
 { #category : #tests }
 AddElementTest >> testInjectInto [ 
-	| myList |
+	| myList result |
 myList := LinkedListed new.
 myList addLast: 1; addLast: 2; addLast: 3; addLast: 4.
-
-self assert: (myList inject: [:sum :each | sum + each] into: 1) equals: 10.
+result := myList inject: [:sum :each | sum + each ] into: 0.
+self assert: result first equals: 10.
 ]
 
 { #category : #tests }
@@ -120,6 +120,17 @@ AddElementTest >> testReject [
 	list addLast: 4.
 	result := list reject: [ :each | each data even ].
 	self assert: result data equals: 3.
+]
+
+{ #category : #tests }
+AddElementTest >> testRemove [
+	|list |
+	list := LinkedListed new.
+	list addLast: 2.
+	list addLast: 3.
+	
+	list remove: 2.
+	self assert: list first equals: 3 .
 ]
 
 { #category : #tests }

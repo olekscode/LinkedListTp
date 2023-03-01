@@ -136,6 +136,22 @@ LinkedListed >> reject: aBlock [
 	^current.
 ]
 
+{ #category : #removing }
+LinkedListed >> remove: anObject [
+	|current|
+	current := headList .
+	 [ current isNotNil ]
+        whileTrue: [ current data = anObject
+                        ifTrue: [ current = headList 
+                                    ifTrue: [ headList  := headList nextLink ]
+                                    ifFalse: [ tail nextLink: current nextLink ].
+                                  size := size - 1.
+                                  ^ self ].
+                    tail := current.
+                    current := current nextLink ].
+				
+]
+
 { #category : #enumerating }
 LinkedListed >> select: aBlock [
 	| current |
