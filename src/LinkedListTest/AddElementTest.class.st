@@ -56,6 +56,17 @@ AddElementTest >> testCollect [
 ]
 
 { #category : #tests }
+AddElementTest >> testDetect [
+	| list result |
+	list := LinkedListed  new.
+	list addLast: 2 .
+	list addLast: 3.
+	list addLast: 4.
+	result := list detect: [ :each | each data even ].
+	self assert: result data equals: 2.
+]
+
+{ #category : #tests }
 AddElementTest >> testDo [
 	| list sum |
 	list := LinkedListed  new.
@@ -89,4 +100,15 @@ AddElementTest >> testIsEmpty [
 	node1 data:1.
 	list addLast: node1.
 	self assert: list isEmpty equals: false.
+]
+
+{ #category : #tests }
+AddElementTest >> testSelect [
+	| list |
+	list := LinkedListed  new.
+	list addLast: 2 .
+	list addLast: 3.
+	list addLast: 4.
+	
+	self assert: (list detect:[:each | each data = 2 ]) equals: 2.
 ]

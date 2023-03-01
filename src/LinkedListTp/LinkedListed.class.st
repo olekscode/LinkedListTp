@@ -62,6 +62,13 @@ LinkedListed >> collect: aBlock [
 
 { #category : #enumerating }
 LinkedListed >> detect:aBlock [
+	| current |
+    current := headList .
+    [ current isNotNil ]
+        whileTrue: [ (aBlock value: current value )
+        		ifTrue: [ ^ current value ].
+        	current := current nextLink ].
+    ^ nil
 
 ]
 
@@ -111,8 +118,14 @@ LinkedListed >> reject: block [
 ]
 
 { #category : #enumerating }
-LinkedListed >> select: block [
-
+LinkedListed >> select: aBlock [
+	| current |
+    current := headList .
+    [ current isNotNil ]
+        whileTrue: [ 
+	(aBlock value: current value )	ifTrue: [ ^ current value ].
+        current := current nextLink ].
+	^current.
 ]
 
 { #category : #'as yet unclassified' }
