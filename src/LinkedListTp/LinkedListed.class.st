@@ -114,7 +114,14 @@ LinkedListed >> linksDo: block [
 ]
 
 { #category : #enumerating }
-LinkedListed >> reject: block [
+LinkedListed >> reject: aBlock [
+	| current |
+    current := headList .
+    [ current isNotNil ]
+        whileTrue: [ 
+	(aBlock value: current value )	ifFalse: [ ^ current value ].
+        current := current nextLink ].
+	^current.
 ]
 
 { #category : #enumerating }

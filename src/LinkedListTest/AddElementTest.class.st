@@ -103,12 +103,23 @@ AddElementTest >> testIsEmpty [
 ]
 
 { #category : #tests }
-AddElementTest >> testSelect [
-	| list |
+AddElementTest >> testReject [
+	| list result|
 	list := LinkedListed  new.
 	list addLast: 2 .
 	list addLast: 3.
 	list addLast: 4.
-	
-	self assert: (list detect:[:each | each data = 2 ]) equals: 2.
+	result := list reject: [ :each | each data even ].
+	self assert: result data equals: 3.
+]
+
+{ #category : #tests }
+AddElementTest >> testSelect [
+	| list result|
+	list := LinkedListed  new.
+	list addLast: 2 .
+	list addLast: 3.
+	list addLast: 4.
+	result := list select: [ :each | each data even ].
+	self assert: result data equals: 2.
 ]
