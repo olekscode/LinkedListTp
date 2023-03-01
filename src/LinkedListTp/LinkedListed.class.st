@@ -98,6 +98,18 @@ LinkedListed >> initialize [
 	size := 0
 ]
 
+{ #category : #enumerating }
+LinkedListed >> inject: aBlock into: anObject [
+	| current result |
+    current := headList .
+    result := anObject.
+    [ current isNotNil ]
+        whileTrue: [ result := aBlock value: current data.
+                    current := current next ].
+    ^ result
+	
+]
+
 { #category : #testing }
 LinkedListed >> isEmpty [
 	^headList isNil.

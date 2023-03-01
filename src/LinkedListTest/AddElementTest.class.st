@@ -92,6 +92,15 @@ AddElementTest >> testFirst [
 ]
 
 { #category : #tests }
+AddElementTest >> testInjectInto [ 
+	| myList |
+myList := LinkedListed new.
+myList addLast: 1; addLast: 2; addLast: 3; addLast: 4.
+
+self assert: (myList inject: [:sum :each | sum + each] into: 1) equals: 10.
+]
+
+{ #category : #tests }
 AddElementTest >> testIsEmpty [
 	| list node1|
 	list := LinkedListed new.
