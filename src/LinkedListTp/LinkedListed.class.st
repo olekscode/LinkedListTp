@@ -116,16 +116,6 @@ LinkedListed >> isEmpty [
 ]
 
 { #category : #enumerating }
-LinkedListed >> linksDo: block [ 
-	|current|
-	current := headList .
-	[ current isNil ] whileFalse: [ 
-		block data: current .
-		current := current nextLink
-	 ]
-]
-
-{ #category : #enumerating }
 LinkedListed >> reject: aBlock [
 	| current |
     current := headList .
@@ -177,4 +167,13 @@ LinkedListed >> select: aBlock [
 { #category : #'as yet unclassified' }
 LinkedListed >> size [
 	^size
+]
+
+{ #category : #sorting }
+LinkedListed >> sort [
+	| list |
+    list := self class new.
+    self initialize .
+    list do: [ :each | self addLast: each ].
+
 ]

@@ -155,3 +155,16 @@ AddElementTest >> testSelect [
 	result := list select: [ :each | each data even ].
 	self assert: result data equals: 2.
 ]
+
+{ #category : #tests }
+AddElementTest >> testSort [
+	|list "node1" |
+	list := LinkedListed new.
+	"node1 := Node new.
+	node1 data: 2."
+	list addLast: 2.
+	list addLast: 3.
+	list sort.
+	
+	self assert: list first equals: 2 .
+]
