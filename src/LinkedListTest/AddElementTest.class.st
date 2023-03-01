@@ -32,7 +32,7 @@ AddElementTest >> testAt [
 	node1 := Node new.
 	list addLast: 2.
 	list addLast: 3.
-	self assert: (list at:2) equals: 2.
+	self assert: (list at:1) equals: 2.
 ]
 
 { #category : #tests }
@@ -142,7 +142,7 @@ AddElementTest >> testRemoveAt [
 	list addLast: 3.
 	
 	list removeAt: 1.
-	self assert: list first equals: 2 .
+	self assert: list first equals: 2.
 ]
 
 { #category : #tests }
