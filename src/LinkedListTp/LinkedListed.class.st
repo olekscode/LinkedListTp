@@ -10,10 +10,11 @@ Class {
 }
 
 { #category : #adding }
-LinkedListed >> addLast: anObjectOrLink [
+LinkedListed >> addLast: anObject [
 
 	| link |
-	link:= anObjectOrLink .
+	link:= Node new .
+	link data: anObject.
 	size = 0 ifFalse: [ tail nextLink:link ] 
 			 ifTrue: [ headList := link ].
 	tail := link .
@@ -45,34 +46,38 @@ LinkedListed >> at:anInteger [
 { #category : #accessing }
 LinkedListed >> at: anInteger put: anObject [
 
-	(anInteger = size + 1 ) ifTrue: [ ^self addLast: anObject ].
-	(anInteger = 1) ifTrue: [ ^headList = anObject ].
-	(self at: anInteger - 1) nextLink: anObject.
+	(anInteger = size ) ifTrue: [ ^self addLast: anObject ].
+	(anInteger = 1) ifTrue: [ ^headList := anObject ].
+	(self at: anInteger -1) nextLink: anObject.
 	
 ]
 
 { #category : #enumerating }
-LinkedListed >> collect: block [
-	| result |
-	result := self class new.
-	self do: [ :each |	result addLast: (block value: each) ].
-	^ result
-	
+LinkedListed >> collect: aBlock [
+	| list |
+	list := self class new.
+	self do: [ :each |	list addLast: aBlock  ].
+	^ list
 ]
 
 { #category : #enumerating }
-LinkedListed >> detect:block [
+LinkedListed >> detect:aBlock [
 
 ]
 
 { #category : #enumerating }
-LinkedListed >> do: block [
-	self linksDo: [ :each | block nextLink: each nextLink ].
+LinkedListed >> do: aBlock [
+	| current |
+    current := headList . 
+    [current isNotNil] whileTrue: [
+        aBlock value: current value.
+        current := current nextLink.
+    ]
 ]
 
 { #category : #accessing }
 LinkedListed >> first [ 
-	^headList .
+	^headList data.
 ]
 
 { #category : #'as yet unclassified' }
