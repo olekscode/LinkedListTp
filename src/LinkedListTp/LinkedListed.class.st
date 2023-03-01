@@ -175,5 +175,11 @@ LinkedListed >> sort [
     list := self class new.
     self initialize .
     list do: [ :each | self addLast: each ].
+^true.
 
+]
+
+{ #category : #sorting }
+LinkedListed >> sorted [
+	^self sort.
 ]

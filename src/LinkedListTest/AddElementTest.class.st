@@ -158,13 +158,23 @@ AddElementTest >> testSelect [
 
 { #category : #tests }
 AddElementTest >> testSort [
-	|list "node1" |
+	|list  |
 	list := LinkedListed new.
-	"node1 := Node new.
-	node1 data: 2."
+
 	list addLast: 2.
 	list addLast: 3.
-	list sort.
 	
-	self assert: list first equals: 2 .
+	self assert: list sort equals: true.
+]
+
+{ #category : #tests }
+AddElementTest >> testSorted [
+	|list  |
+	list := LinkedListed new.
+
+	list addLast: 3.
+	list addLast: 2.
+	
+	self assert: list sorted equals: true.
+	
 ]
