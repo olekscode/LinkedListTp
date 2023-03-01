@@ -152,6 +152,20 @@ LinkedListed >> remove: anObject [
 				
 ]
 
+{ #category : #accessing }
+LinkedListed >> removeAt: anObject [
+	| current |
+    current := headList.
+(anObject = size) ifTrue: [ current nextLink: nil ].
+(anObject = 1) ifTrue: [ current := nil ].
+(self at: anObject - 1) nextLink: (self at:anObject + 1).
+size = size -1.  
+    "current = headList
+        ifTrue: [ headList  := headList nextLink ]
+        ifFalse: [ tail next: current next ].
+    size := size - 1."
+]
+
 { #category : #enumerating }
 LinkedListed >> select: aBlock [
 	| current |
