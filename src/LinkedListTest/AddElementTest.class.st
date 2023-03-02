@@ -29,7 +29,7 @@ AddElementTest >> testAdd [
 AddElementTest >> testAt [
 	| list node1 |
 	list := LinkedListed new.
-	node1 := Node new.
+	node1 := LinkedListedNode new.
 	list addLast: 2.
 	list addLast: 3.
 	self assert: (list at:1) equals: 2.
@@ -106,7 +106,7 @@ AddElementTest >> testIsEmpty [
 	| list node1|
 	list := LinkedListed new.
 	
-	node1 := Node new.
+	node1 := LinkedListedNode new.
 	node1 data:1.
 	list addLast: node1.
 	self assert: list isEmpty equals: false.
