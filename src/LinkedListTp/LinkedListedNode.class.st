@@ -7,23 +7,3 @@ Class {
 	],
 	#category : #LinkedListTp
 }
-
-{ #category : #accessing }
-Node >> data [
-	^data 
-]
-
-{ #category : #accessing }
-Node >> data: newData [
-	data:= newData 
-]
-
-{ #category : #accessing }
-Node >> nextLink [  
-	^nextLink
-]
-
-{ #category : #accessing }
-Node >> nextLink: newLink [
-    nextLink := newLink.
-]

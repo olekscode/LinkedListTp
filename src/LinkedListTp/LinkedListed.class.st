@@ -13,7 +13,7 @@ Class {
 LinkedListed >> addLast: anObject [
 
 	| link |
-	link:= Node new .
+	link:= LinkedListedNode new .
 	link data: anObject.
 	size = 0 ifFalse: [ tail nextLink:link ] 
 			 ifTrue: [ headList := link ].
