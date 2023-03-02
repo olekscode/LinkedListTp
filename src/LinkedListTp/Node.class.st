@@ -1,5 +1,5 @@
 Class {
-	#name : #Node,
+	#name : #LinkedListedNode,
 	#superclass : #Object,
 	#instVars : [
 		'data',
